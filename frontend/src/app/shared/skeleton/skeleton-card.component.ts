@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 /** Skeleton card — mimics a card's shape while loading */
 @Component({
@@ -37,9 +37,5 @@ export class SkeletonCardComponent {}
 })
 export class SkeletonGridComponent {
   count = input<number>(6);
-  items = (() => {
-    // derive array from count signal
-    const arr = new Array(this.count()).fill(0);
-    return () => arr;
-  })();
+  items = computed(() => new Array(this.count()).fill(0));
 }

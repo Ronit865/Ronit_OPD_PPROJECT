@@ -1,33 +1,43 @@
-/* ─── Global Styles ─────────────────────────────────────────────────── */
-@import 'tailwindcss';
-@import '@fontsource-variable/inter';
+/* ─── Font imports ───────────────────────────────────────────────────── */
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/plus-jakarta-sans/wght-italic.css';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
 
-/* ─── Design Tokens (design.md) ─────────────────────────────────────── */
+/* ─── Tailwind ───────────────────────────────────────────────────────── */
+@import 'tailwindcss';
+
+/* ─── Design Tokens ─────────────────────────────────────────────────── */
 @theme {
-  --font-sans: 'Inter Variable', sans-serif;
+  /* Fonts */
+  --font-sans:    'Plus Jakarta Sans Variable', sans-serif;
+  --font-numeric: 'IBM Plex Sans Variable', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 
   /* Primary – teal-700 */
   --color-primary:       #0F766E;
   --color-primary-hover: #0D6562;
 
   /* Surface */
-  --color-page:   #F8FAFC;  /* slate-50  */
+  --color-page:   #F8FAFC;   /* slate-50  */
   --color-card:   #FFFFFF;
-  --color-border: #E2E8F0;  /* slate-200 */
+  --color-border: #E2E8F0;   /* slate-200 */
 
   /* Text */
-  --color-text:         #0F172A;  /* slate-900 */
-  --color-text-muted:   #64748B;  /* slate-500 */
+  --color-text:       #0F172A;  /* slate-900 */
+  --color-text-muted: #64748B;  /* slate-500 */
 
-  /* Status */
-  --color-status-scheduled-bg:   #EFF6FF;  /* blue-50  */
-  --color-status-scheduled-text: #1D4ED8;  /* blue-700 */
-  --color-status-completed-bg:   #F0FDF4;  /* green-50 */
-  --color-status-completed-text: #15803D;  /* green-700 */
+  /* Status pills */
+  --color-status-scheduled-bg:   #EFF6FF;
+  --color-status-scheduled-text: #1D4ED8;
+  --color-status-completed-bg:   #F0FDF4;
+  --color-status-completed-text: #15803D;
 
   /* Info pill */
-  --color-pill-bg:   #F1F5F9;  /* slate-100 */
-  --color-pill-text: #334155;  /* slate-700 */
+  --color-pill-bg:   #F1F5F9;
+  --color-pill-text: #334155;
 }
 
 /* ─── Base ───────────────────────────────────────────────────────────── */
@@ -38,9 +48,21 @@ html {
   background-color: var(--color-page);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Focus ring (accessibility) ────────────────────────────────────── */
+/* Numeric data (stats, vitals, times) */
+.font-numeric {
+  font-family: var(--font-numeric);
+}
+
+/* IDs / codes (patient IDs, appointment refs) */
+.font-id,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;

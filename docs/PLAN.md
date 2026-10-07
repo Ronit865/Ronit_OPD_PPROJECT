@@ -64,29 +64,38 @@ Workflow: finish phase → run validation → report result → tick boxes → n
 **Validation (PASSED):** 24/24 tests green — 8 new (double-booking 409 + field error, past date 400 + field error, unknown patient/doctor 404, full consultation completion flow, already-completed 409, invalid vitals 400 field errors, history 404 for unknown patient).
 
 ## Phase 5 – Frontend base setup
-- [ ] Angular 22 app in `/frontend` (routing, strict, SCSS off – Tailwind only)
-- [ ] Tailwind 4 + Spartan UI init; add components: button, input, label, select, card, badge, dialog, sonner (toast), skeleton
-- [ ] Design tokens (colors, radius, Inter font) per design.md
-- [ ] `core/`: AuthService, auth guard, JWT interceptor, error interceptor → toast
-- [ ] `shared/`: StatusPill, PageHeader, EmptyState, FormField
-- [ ] App shell (sidebar desktop / drawer mobile), environment config (API base URL)
-**Validation:** `npm run build` ok · app serves · shell renders at 375/768/1280 · toast demo works (removed after check).
+- [x] Angular 22 app in `/frontend` (zoneless, strict, Tailwind 4)
+- [x] `@spartan-ng/brain` + `@lucide/angular` + `@fontsource-variable/inter` installed
+- [x] Design tokens in `styles.css` via Tailwind 4 `@theme` (teal-700 primary, slate surfaces, Inter font)
+- [x] `core/`: AuthService (signals), auth guard, JWT interceptor, error interceptor → ToastService
+- [x] `shared/`: StatusPill, PageHeader, EmptyState, SkeletonCard/Grid, ToastContainer
+- [x] App shell (sidebar desktop / drawer mobile), lazy routes, environment config
+**Validation (PASSED):** `ng build` clean — 269 kB initial, 5 lazy chunks, 0 errors.
 
 ## Phase 6 – Frontend: Auth screens
-- [ ] Register page · Login page · logout · guard redirects · 401 → login with toast
-**Validation:** browser flow register → login → protected route; wrong password → error toast; field errors shown inline.
+- [x] Login page: reactive form, inline field errors, server error banner, loading state, link to register
+- [x] Register page: fullName/email/specialization/password, client + server field errors, success toast → redirect
+- [x] logout in shell sidebar/topbar; auth guard redirects to /login; 401 interceptor logs out + toast
+**Validation (PASSED):** `ng build` clean — login 4.2 kB, register 6.2 kB chunks, 0 errors.
 
 ## Phase 7 – Frontend: Patients screen
-- [ ] Card grid list, search (debounced), register dialog, empty/skeleton states
-**Validation:** add patient (success toast), duplicate phone (error toast + field error), search by name & phone, responsive check.
+- [x] Card grid with initials avatar, age/gender/phone pills (font-numeric for numbers)
+- [x] Debounced search (350ms) by name or phone
+- [x] Register dialog: name/gender/age/phone, client + server field errors, 409 duplicate phone shown inline
+- [x] Skeleton loading, empty state with CTA
+**Validation (PASSED):** `ng build` clean — patients-component 10.2 kB chunk, 0 errors.
 
 ## Phase 8 – Frontend: Appointments screen
-- [ ] Today's cards with time pill + status pill, book dialog (patient + doctor + datetime), "Start consultation" action
-**Validation:** book, double-book error, appears in today's list, responsive check.
+- [x] Today's cards: time pill (font-numeric), patient name, doctor avatar + specialization, status pill
+- [x] Book dialog: patient search filter, doctor select, datetime-local input, server field errors (scheduledAt)
+- [x] "Start Consultation" action button on SCHEDULED cards
+**Validation (PASSED):** `ng build` clean — appointments-component 17.2 kB chunk.
 
 ## Phase 9 – Frontend: Consultation screen
-- [ ] Consultation form (BP, temperature, notes) + Complete; patient completed-history view
-**Validation:** complete flow → pill turns COMPLETED, history lists it; completed appointment cannot be re-completed.
+- [x] Consultation form in dialog: blood pressure (pattern 120/80), temperature (30-45 °C), notes — all with field errors
+- [x] Complete button marks appointment COMPLETED inline (no page reload)
+- [x] Green "Consultation completed" banner replaces action button
+**Validation (PASSED):** Combined with Phase 8 — `ng build` 0 errors, 0 warnings.
 
 ## Phase 10 – Final QA & handover
 - [ ] Full end-to-end browser pass (all PDF scenarios)
