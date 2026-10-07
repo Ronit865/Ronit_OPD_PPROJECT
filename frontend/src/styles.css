@@ -1,0 +1,52 @@
+/* ─── Global Styles ─────────────────────────────────────────────────── */
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+/* ─── Design Tokens (design.md) ─────────────────────────────────────── */
+@theme {
+  --font-sans: 'Inter Variable', sans-serif;
+
+  /* Primary – teal-700 */
+  --color-primary:       #0F766E;
+  --color-primary-hover: #0D6562;
+
+  /* Surface */
+  --color-page:   #F8FAFC;  /* slate-50  */
+  --color-card:   #FFFFFF;
+  --color-border: #E2E8F0;  /* slate-200 */
+
+  /* Text */
+  --color-text:         #0F172A;  /* slate-900 */
+  --color-text-muted:   #64748B;  /* slate-500 */
+
+  /* Status */
+  --color-status-scheduled-bg:   #EFF6FF;  /* blue-50  */
+  --color-status-scheduled-text: #1D4ED8;  /* blue-700 */
+  --color-status-completed-bg:   #F0FDF4;  /* green-50 */
+  --color-status-completed-text: #15803D;  /* green-700 */
+
+  /* Info pill */
+  --color-pill-bg:   #F1F5F9;  /* slate-100 */
+  --color-pill-text: #334155;  /* slate-700 */
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-page);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Focus ring (accessibility) ────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 9999px; }

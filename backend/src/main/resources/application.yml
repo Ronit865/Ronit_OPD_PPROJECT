@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: optional:file:./.env[.properties]
+  application:
+    name: opd
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+
+app:
+  cors:
+    allowed-origin: http://localhost:4200
+  jwt:
+    secret: ${JWT_SECRET}
+    expiry-minutes: 480
